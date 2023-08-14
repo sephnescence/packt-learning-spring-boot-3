@@ -16,3 +16,4 @@ I'm following through Learning Spring Boot 3.0 Third Edition
 
 - Jackson - JSON library
 - @RestController annotation
+- @RequestBody annotation allows for Jackson to decode the income JSON body request
