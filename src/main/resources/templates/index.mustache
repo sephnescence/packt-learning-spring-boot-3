@@ -1,0 +1,13 @@
+<h1>Learning Spring Boot 3</h1>
+
+<form action="/new-video" method="post">
+    <label for="name">Video Name</label>
+    <input name="name" type="text" placeholder="Enter a video name" />
+    <button type="submit">Add Video</button>
+</form>
+
+<ul>
+    {{#videos}}
+        <li>{{name}}</li>
+    {{/videos}}
+</ul>
