@@ -13,3 +13,6 @@ I'm following through Learning Spring Boot 3.0 Third Edition
     ```
 - Note that usages of `@Controller` and `@Service` are related to Spring Boot's Component Scanning
 - Packt have a repository to look at their versions by the end of the chapter. e.g. https://github.com/PacktPublishing/Learning-Spring-Boot-3.0-Third-Edition/tree/main/ch2
+
+- Jackson - JSON library
+- @RestController annotation
