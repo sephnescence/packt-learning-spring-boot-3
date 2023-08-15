@@ -17,8 +17,8 @@ public class ApiController {
         return this.videoService.getVideos();
     }
 
-    @PutMapping("/api/videos")
-    public Video put(@RequestBody Video newVideo) { // Note RequestBody instead of ModelAttribute
+    @PostMapping("/api/videos")
+    public Video post(@RequestBody Video newVideo) { // Note RequestBody instead of ModelAttribute
         this.videoService.saveNewVideo(newVideo);
 
         return newVideo;

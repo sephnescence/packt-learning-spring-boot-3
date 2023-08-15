@@ -75,3 +75,5 @@ I'm following through Learning Spring Boot 3.0 Third Edition
   - test-compile
   - validate
   - verify
+- React has now been added! You can access it via heading to http://localhost:8080/react
+  - Note that you must first run `./mvnw generate-resources` and whenever you make changes. Hot module reloading doesn't appear to be a thing just yet BTTODO

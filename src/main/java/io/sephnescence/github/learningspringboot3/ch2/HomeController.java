@@ -23,6 +23,7 @@ public class HomeController {
 
     @PostMapping("/new-video") // Annotation for Post Request
     public String newVideo(@ModelAttribute Video newVideo) {
+        System.out.println("Saving new video");
         this.videoService.saveNewVideo(newVideo);
 
         return "redirect:/"; // Spring MVC directive - Returns HTTP 302
@@ -30,5 +31,10 @@ public class HomeController {
         //  Note however that at least for now I don't know how to reference a route by name,
         //  assuming such a thing even exists
         // 201 would be for an api ok response, which doesn't need a redirect
+    }
+
+    @GetMapping("/react")
+    public String react() {
+        return "react";
     }
 }
