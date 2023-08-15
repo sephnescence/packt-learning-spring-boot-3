@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "parcel": "^2.9.3"
+  },
+  "source": "src/main/javascript/index.js",
+  "targets": {
+    "default": {
+      "distDir": "target/classes/static"
+    }
+  }
+}

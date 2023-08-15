@@ -39,6 +39,47 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>com.github.eirslett</groupId>
+				<artifactId>frontend-maven-plugin</artifactId>
+				<version>1.12.1</version>
+<!--				<version>1.13.4</version>--> <!-- The latest version on GitHub -->
+				<executions>
+					<execution>
+						<goals>
+							<goal>install-node-and-npm</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>npm install</id>
+						<goals>
+							<goal>
+								npm
+							</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>npx run</id>
+						<goals>
+							<goal>
+								npx
+							</goal>
+						</goals>
+						<phase>
+							generate-resources
+						</phase>
+						<configuration>
+							<arguments>
+								parcel build
+							</arguments>
+						</configuration>
+					</execution>
+				</executions>
+				<configuration>
+					<nodeVersion>v16.14.2</nodeVersion> <!-- EOL in a couple of months -->
+<!--					<nodeVersion>v18.17.1</nodeVersion>--> <!-- New LTS -->
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 

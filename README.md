@@ -17,3 +17,61 @@ I'm following through Learning Spring Boot 3.0 Third Edition
 - Jackson - JSON library
 - @RestController annotation
 - @RequestBody annotation allows for Jackson to decode the income JSON body request
+
+- Adding support for NodeJS
+- Add an additional `<plugin>` entry in `pom.xml`. This is apparently called a **coordinate**
+  ```xml
+  <plugin>
+      <groupId>com.github.eirslett</groupId>
+      <artifactId>frontend-maven-plugin</artifactId>
+      <version>1.12.1</version> <!-- 1.13.4 is the latest -->
+      <executions>
+          <execution>
+              <goals>
+                  <goal>install-node-and-npm</goal>
+              </goals>
+          </execution>
+      </executions>
+      <configuration>
+          <nodeVersion>v16.14.2</nodeVersion> <!-- 18.17.1 is the latest -->
+      </configuration>
+  </plugin>
+  ```
+- This will download the `https://github.com/eirslett/frontend-maven-plugin` repo.
+- Node 20 is already out now, and there's been a recent surge in activity for the package, but I'll download 1.12.1 still to be safe
+- Spring Boot will bundle anything in `src/main/resources/static`, meaning the bundle results should be pointed there, and they should be available to the web page, during Maven's "generate-resources" phase. This is run with `./mvnw generate-resources`
+- Double check that the `node` and `node_modules` directories that was just created was not added to source control, or appears as new files with `git status`. If they do appear, be sure to ignore them
+- You may also need to run npm install to create the `node_modules` folder
+- There are 31 phases that maven plugins can run in. This book referred to "clean" as a "Maven clean cycle", but I'm guessing they meant "phase"?
+- At least, this is what intelliJ went to autocomplete `<phase></phase>` with then adding the `<execution>` for running npx
+  - clean
+  - compile
+  - deploy
+  - generate-resources
+  - generate-sources
+  - generate-test-resources
+  - generate-test-sources
+  - initialize
+  - install
+  - integration-test
+  - none
+  - package
+  - post-clean
+  - post-integration-test
+  - post-site
+  - pre-clean
+  - pre-integration-test
+  - pre-site
+  - prepare-package
+  - process-classes
+  - process-resources
+  - process-sources
+  - process-test-classes
+  - process-test-resources
+  - process-test-sources
+  - site
+  - site-deploy
+  - test
+  - test-compile
+  - validate
+  - verify
