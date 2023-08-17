@@ -137,3 +137,14 @@ I didn't end up finishing the chapter because it seemed a bit irrelevant. Talkin
 - https://springbootlearning.com/password-storage. This can be slow to load. It redirects to https://docs.spring.io/spring-security/reference/features/authentication/password-storage.html#authentication-password-storage so maybe just go there directly
 - Introduces another way to start the app
   - ./mvnw spring-boot:run
+- Securing web routes and HTTP verbs
+  - Proving your identity is "authenticating", but what you have permission to do is "authorisation"
+  - Inside of `SpringBootWebSecurityConfiguration`, you'll find `SecurityFilterChain defaultSecurityFilterChain`
+    - It calls `http.authoriseRequests().anyRequest().authenticated`. I'm guessing that's what ensures we're logged in
+    - Spring Security allows for logging in though, so there must be a whitelist. Perhaps it's through either of these subsequent calls
+      - `http.formLogin()`
+        - Apparently enables the login get and post, and the logout post
+      - `http.httpBasic()`
+        - Apparently allows authentication via CLI
+      - The book refers to these as "standard authentication mechanisms" though
+  - We can define our own Bean in `SecurityConfig`. Check that class in this commit for reference

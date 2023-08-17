@@ -1,5 +1,6 @@
 package io.sephnescence.github.learningspringboot3.ch2;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ public class HomeController {
     private final VideoEntityService videoEntityService;
 
     public HomeController(VideoEntityService videoEntityService) {
+        System.out.println(SecurityContextHolder.getContext().getAuthentication());
         this.videoEntityService = videoEntityService;
     }
 
@@ -21,6 +23,11 @@ public class HomeController {
         model.addAttribute("videoEntities", this.videoEntityService.getVideoEntities());
 
         return "index";
+    }
+
+    @GetMapping("/multi-field-search") // Annotation for Get Request
+    public String multiFieldSearchGet() {
+        return "redirect:/";
     }
 
     @PostMapping("/new-video-entity") // Annotation for Post Request
@@ -41,7 +48,7 @@ public class HomeController {
     }
 
     @PostMapping("/multi-field-search")
-    public String multiFieldSearch(
+    public String multiFieldSearchPost(
         @ModelAttribute VideoSearch search,
         Model model
     ) {

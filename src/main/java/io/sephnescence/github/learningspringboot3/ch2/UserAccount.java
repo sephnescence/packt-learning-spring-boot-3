@@ -49,6 +49,9 @@ public class UserAccount {
             this.authorities = new ArrayList<>();
         }
 
+        System.out.print("Logged in user has these roles - ");
+        System.out.println(this.authorities);
+
         return authorities;
     }
 

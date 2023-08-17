@@ -3,7 +3,10 @@ package io.sephnescence.github.learningspringboot3.ch2;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfig {
@@ -16,7 +19,7 @@ public class SecurityConfig {
     @Bean
     CommandLineRunner initUsers(UserManagementRepository userManagementRepository) {
         return args -> { // This is a Lambda function
-            userManagementRepository.save(new UserAccount("user", "password", "ROLE_USER")); // It was "User" earlier hmm
+            userManagementRepository.save(new UserAccount("user", "password", "ROLE_USER"));
             userManagementRepository.save(new UserAccount("admin", "password", "ROLE_ADMIN"));
         };
     }
@@ -24,5 +27,26 @@ public class SecurityConfig {
     @Bean
     UserDetailsService userService(UserRepository userRepository) {
         return username -> userRepository.findByUsername(username).asUser();
+    }
+
+    @Bean
+    SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
+        System.out.println("Using configureSecurity to create SecurityFilterChain...");
+        // This is deprecated though... :/
+        http.authorizeHttpRequests()
+//                .requestMatchers("/login").permitAll()
+//                .requestMatchers("/multi-field-search").authenticated()
+                .requestMatchers(HttpMethod.GET, "/", "/react", "index.js").authenticated()
+//                .requestMatchers(HttpMethod.POST, "/new-video-entity").hasRole("ADMIN")
+//                .requestMatchers(HttpMethod.POST, "/new-video-entity").authenticated()
+//                .requestMatchers(HttpMethod.GET, "/api/**").authenticated()
+//                .requestMatchers(HttpMethod.POST, "/api/**").authenticated() // I think we'd want to lock down some api requests though
+                .anyRequest().denyAll()
+                .and()
+                .formLogin()
+                .and()
+                .httpBasic();
+
+        return http.build();
     }
 }
