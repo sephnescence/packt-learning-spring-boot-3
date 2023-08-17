@@ -14,9 +14,9 @@ public class VideoEntityService {
         this.videoEntityRepository = videoEntityRepository;
 
         // This can apparently be moved to a "post construct". Assuming that happens later in the chapter
-        this.videoEntityRepository.save(new VideoEntity("Hideo 1", "Kojimaaa"));
-        this.videoEntityRepository.save(new VideoEntity("Hideo 2", "Kojimaaa"));
-        this.videoEntityRepository.save(new VideoEntity("Hideo 3", "Kojimaaa"));
+        this.videoEntityRepository.save(new VideoEntity("admin", "Hideo 1", "Kojimaaa"));
+        this.videoEntityRepository.save(new VideoEntity("admin", "Hideo 2", "Kojimaaa"));
+        this.videoEntityRepository.save(new VideoEntity("admin", "Hideo 3", "Kojimaaa"));
     }
     public List<VideoEntity> getVideoEntities() {
         return this.videoEntityRepository.findAll();
@@ -43,7 +43,7 @@ public class VideoEntityService {
         return Collections.emptyList();
     }
 
-    public void saveNewVideoEntity(VideoEntity newVideoEntity) {
+    public void saveNewVideoEntity(VideoEntity newVideoEntity, String username) {
         /*
          Not that this is actually persisting to the db, it is persisted in memory while
           the server remains alive. Meaning another request to the index page will see
@@ -57,6 +57,6 @@ public class VideoEntityService {
          this.videoEntities = List.copyOf(extend);
         */
 
-        this.videoEntityRepository.saveAndFlush(newVideoEntity);
+        this.videoEntityRepository.saveAndFlush(new VideoEntity(username, newVideoEntity.getName(), newVideoEntity.getDescription()));
     }
 }

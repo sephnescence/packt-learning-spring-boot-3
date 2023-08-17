@@ -1,5 +1,6 @@
 package io.sephnescence.github.learningspringboot3.ch2;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,9 +32,9 @@ public class HomeController {
     }
 
     @PostMapping("/new-video-entity") // Annotation for Post Request
-    public String newVideo(@ModelAttribute VideoEntity newVideoEntity) {
+    public String newVideo(@ModelAttribute VideoEntity newVideoEntity, Authentication authentication) {
         System.out.println("Saving new video entity");
-        this.videoEntityService.saveNewVideoEntity(newVideoEntity);
+        this.videoEntityService.saveNewVideoEntity(newVideoEntity, authentication.getName());
 
         return "redirect:/"; // Spring MVC directive - Returns HTTP 302
         // 302 means it was created just fine, but it will redirect to another location

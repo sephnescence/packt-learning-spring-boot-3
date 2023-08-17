@@ -7,16 +7,18 @@ import jakarta.persistence.Id;
 @Entity
 public class VideoEntity {
     private @Id @GeneratedValue Long id;
+    private String username;
     private String name;
     private String description;
 
     // JPA needs a public or protected constructor with no arguments
     protected VideoEntity() {
-        this(null, null);
+        this(null, null, null);
     }
 
-    VideoEntity(String name, String description) {
+    VideoEntity(String username, String name, String description) {
         this.id = null; // Signifies to JPA that this will be a new row
+        this.username = username;
         this.name = name;
         this.description = description;
     }
@@ -27,6 +29,14 @@ public class VideoEntity {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getName() {

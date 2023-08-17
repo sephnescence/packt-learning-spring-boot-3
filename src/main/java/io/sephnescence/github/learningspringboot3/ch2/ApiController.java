@@ -1,5 +1,6 @@
 package io.sephnescence.github.learningspringboot3.ch2;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,8 +19,8 @@ public class ApiController {
     }
 
     @PostMapping("/api/videos")
-    public VideoEntity post(@RequestBody VideoEntity newVideoEntity) { // Note RequestBody instead of ModelAttribute
-        this.videoEntityService.saveNewVideoEntity(newVideoEntity);
+    public VideoEntity post(@RequestBody VideoEntity newVideoEntity, Authentication authentication) { // Note RequestBody instead of ModelAttribute
+        this.videoEntityService.saveNewVideoEntity(newVideoEntity, authentication.getName());
 
         return newVideoEntity;
     }

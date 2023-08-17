@@ -21,6 +21,8 @@ public class SecurityConfig {
         return args -> { // This is a Lambda function
             userManagementRepository.save(new UserAccount("user", "password", "ROLE_USER"));
             userManagementRepository.save(new UserAccount("admin", "password", "ROLE_ADMIN"));
+            userManagementRepository.save(new UserAccount("alice", "password", "ROLE_USER"));
+            userManagementRepository.save(new UserAccount("bob", "password", "ROLE_USER"));
         };
     }
 
