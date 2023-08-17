@@ -12,8 +12,17 @@ I'm following through Learning Spring Boot 3.0 Third Edition
     </dependency>
     ```
 - Note that usages of `@Controller` and `@Service` are related to Spring Boot's Component Scanning
-- Packt have a repository to look at their versions by the end of the chapter. e.g. https://github.com/PacktPublishing/Learning-Spring-Boot-3.0-Third-Edition/tree/main/ch2
 
+## Chapter 2 ##
+- https://github.com/PacktPublishing/Learning-Spring-Boot-3.0-Third-Edition/tree/main/ch2
+- Aiming to do the following
+  - Use spring.io to build apps (and add more spring starters after having started a project already)
+  - Create a Spring MVC web controller
+  - Mustache templates
+  - Create a JSON API
+  - Adding React
+
+### Chapter 2 Notes ###
 - Jackson - JSON library
 - @RestController annotation
 - @RequestBody annotation allows for Jackson to decode the income JSON body request
@@ -77,3 +86,44 @@ I'm following through Learning Spring Boot 3.0 Third Edition
   - verify
 - React has now been added! You can access it via heading to http://localhost:8080/react
   - Note that you must first run `./mvnw generate-resources` and whenever you make changes. Hot module reloading doesn't appear to be a thing just yet BTTODO
+
+## Chapter 3 ##
+- https://github.com/PacktPublishing/Learning-Spring-Boot-3.0-Third-Edition/tree/main/ch3
+- Aiming to do the following
+  - Add Spring Data and create a repository
+  - DTOs and POJOs
+  - Use custom finders
+  - Query by Example
+  - Java Persistance API (JPA)
+
+### Chapter 3 Notes ###
+- Spring Data doesn't offer a lowest common denominator like traditional ORMs
+  - Spring Data Templates exist PostgreSQL, Redis, MongoDB, Cassandra, Couchbase
+- Modules?
+  - Many Spring Data Modules have **repository** support
+- Query by Example?
+- Querydsl library?
+- A note on Hibernate. This chapter won't go into anything further
+  - HibernateTemplates are legacy
+  - Use SessionFactory.getCurrentSession() API?
+- JPA's EntityManager?
+- You can directly query whichever database you're using, but this chapter won't go into it
+- For this chapter we'll use H2, a **Java Database Connectivity** based relational database. It's good for prototyping
+  - We know the drill, got to start.spring.io and add the `Spring Data JPA` and `H2` starters, click browse, and add them to `pom.xml`
+
+### DTOs, entities, and POJOs ###
+- These three paradigms aren't enforced in code. They help facilitate the S in SOLID (Single Responsibility Principle)
+  - **Data Transfer Objects** - Think client/server/web layer
+  - **entities** - Think db/internal code layer. JPA works here
+    - The JPA will perform **flushing** when updates need to be pushed to a store
+    - Use `@Entity` annotation. See `VideoEntity` for reference
+  - **Plain Old Java Objects** - Think proxies over classes that require framework specific stuff. Seems to be related to helping with testability
+
+### Repositories ###
+- First published in Patterns of Enterprise Architecture
+- The application talks to the repository in domain speak
+- Repository talks to the data store in query speak
+- See `VideoRepository` for reference
+  - Jakarta Persistence Query Language (JPQL)
+  - Custom Finder (Things like findBy...)
+  - 

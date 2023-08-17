@@ -6,21 +6,21 @@ import java.util.List;
 
 @RestController
 public class ApiController {
-    private final VideoService videoService;
+    private final VideoEntityService videoEntityService;
 
-    public ApiController(VideoService videoService) {
-        this.videoService = videoService;
+    public ApiController(VideoEntityService videoEntityService) {
+        this.videoEntityService = videoEntityService;
     }
 
     @GetMapping("/api/videos")
-    public List<Video> all() {
-        return this.videoService.getVideos();
+    public List<VideoEntity> all() {
+        return this.videoEntityService.getVideoEntities();
     }
 
     @PostMapping("/api/videos")
-    public Video post(@RequestBody Video newVideo) { // Note RequestBody instead of ModelAttribute
-        this.videoService.saveNewVideo(newVideo);
+    public VideoEntity post(@RequestBody VideoEntity newVideoEntity) { // Note RequestBody instead of ModelAttribute
+        this.videoEntityService.saveNewVideoEntity(newVideoEntity);
 
-        return newVideo;
+        return newVideoEntity;
     }
 }

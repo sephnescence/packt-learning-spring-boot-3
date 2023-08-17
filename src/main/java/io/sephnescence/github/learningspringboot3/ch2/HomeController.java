@@ -6,25 +6,27 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller // Spring Boot Annotation for Component Scanning
 public class HomeController {
-    private final VideoService videoService;
+    private final VideoEntityService videoEntityService;
 
-    public HomeController(VideoService videoService) {
-        this.videoService = videoService;
+    public HomeController(VideoEntityService videoEntityService) {
+        this.videoEntityService = videoEntityService;
     }
 
     @GetMapping("/") // Annotation for Get Request
     public String index(Model model) {
-        model.addAttribute("videos", this.videoService.getVideos());
+        model.addAttribute("videoEntities", this.videoEntityService.getVideoEntities());
 
         return "index";
     }
 
-    @PostMapping("/new-video") // Annotation for Post Request
-    public String newVideo(@ModelAttribute Video newVideo) {
-        System.out.println("Saving new video");
-        this.videoService.saveNewVideo(newVideo);
+    @PostMapping("/new-video-entity") // Annotation for Post Request
+    public String newVideo(@ModelAttribute VideoEntity newVideoEntity) {
+        System.out.println("Saving new video entity");
+        this.videoEntityService.saveNewVideoEntity(newVideoEntity);
 
         return "redirect:/"; // Spring MVC directive - Returns HTTP 302
         // 302 means it was created just fine, but it will redirect to another location
@@ -36,5 +38,17 @@ public class HomeController {
     @GetMapping("/react")
     public String react() {
         return "react";
+    }
+
+    @PostMapping("/multi-field-search")
+    public String multiFieldSearch(
+        @ModelAttribute VideoSearch search,
+        Model model
+    ) {
+        List<VideoEntity> searchResults = videoEntityService.search(search);
+
+        model.addAttribute("videoEntities", searchResults);
+
+        return "index";
     }
 }

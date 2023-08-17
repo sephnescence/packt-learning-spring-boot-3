@@ -1,13 +1,43 @@
 <h1>Learning Spring Boot 3</h1>
 
-<form action="/new-video" method="post">
-    <label for="name">Video Name</label>
-    <input name="name" type="text" placeholder="Enter a video name" />
-    <button type="submit">Add Video</button>
+<form action="/new-video-entity" method="post">
+    <label for="name">
+        Video Entity Name
+        <input name="name" type="text" placeholder="Enter a video entity name" />
+    </label>
+    <label for="description">
+        Video Entity Description
+        <input name="description" type="text" placeholder="Enter a video entity description" />
+    </label>
+    <button type="submit">Add Video Entity</button>
 </form>
 
-<ul>
-    {{#videos}}
-        <li>{{name}}</li>
-    {{/videos}}
-</ul>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+    </tr>
+    {{#videoEntities}}
+        <tr>
+            <td>{{name}}</td>
+            <td>{{description}}</td>
+        </tr>
+    {{/videoEntities}}
+</table>
+
+<hr />
+
+<form action="/multi-field-search" method="post">
+    <label for="name">
+        Video Entity Name
+        <input name="name" type="text" placeholder="Video Entity Name" />
+    </label>
+
+
+    <label for="description">
+        Video Entity Description
+        <input name="description" type="text" placeholder="Video Entity Description" />
+    </label>
+
+    <button type="submit">Search Video Entities</button>
+</form>
