@@ -22,6 +22,12 @@
         <tr>
             <td>{{name}}</td>
             <td>{{description}}</td>
+            <td>
+                <form action="/delete-video-entity/{{id}}" method="post">
+                    <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}" />
+                    <button type="submit">Delete Video Entity</button>
+                </form>
+            </td>
         </tr>
     {{/videoEntities}}
 </table>

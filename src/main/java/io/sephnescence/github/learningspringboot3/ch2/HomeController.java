@@ -4,9 +4,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -41,6 +39,12 @@ public class HomeController {
         //  Note however that at least for now I don't know how to reference a route by name,
         //  assuming such a thing even exists
         // 201 would be for an api ok response, which doesn't need a redirect
+    }
+
+    @PostMapping("/delete-video-entity/{videoId}")
+    public String deleteVideo(@PathVariable Long videoId) { // Despite being a string inherently, this will coerce it
+        videoEntityService.delete(videoId);
+        return "redirect:/";
     }
 
     @GetMapping("/react")

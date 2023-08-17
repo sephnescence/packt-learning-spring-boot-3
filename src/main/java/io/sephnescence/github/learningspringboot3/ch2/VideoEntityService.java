@@ -59,4 +59,18 @@ public class VideoEntityService {
 
         this.videoEntityRepository.saveAndFlush(new VideoEntity(username, newVideoEntity.getName(), newVideoEntity.getDescription()));
     }
+
+    public void delete(Long videoId) {
+        /*
+        findById() returns Optional<VideoEntity>, so we can call map even though it's going to be one video entity, and
+        throw a RuntimeException if no video entities were returned
+         */
+        this.videoEntityRepository
+                .findById(videoId)
+                .map(videoEntity -> {
+                    this.videoEntityRepository.delete(videoEntity);
+                    return true;
+                })
+                .orElseThrow(() -> new RuntimeException("No video at " + videoId));
+    }
 }

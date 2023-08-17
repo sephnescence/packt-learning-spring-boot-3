@@ -38,6 +38,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests()
                 .requestMatchers(HttpMethod.POST, "/multi-field-search").authenticated()
                 .requestMatchers(HttpMethod.GET, "/multi-field-search").authenticated()
+                .requestMatchers(HttpMethod.POST, "/delete-video-entity/{videoId}").authenticated()
                 .requestMatchers(HttpMethod.GET, "/", "/react", "index.js").authenticated()
                 .requestMatchers(HttpMethod.POST, "/new-video-entity").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.GET, "/new-video-entity").hasRole("ADMIN")
