@@ -47,6 +47,11 @@ public class SecurityConfig {
                 .and()
                 .httpBasic();
 
+        // This is how you would disable CSRF. Technically you would need to do this to serve API requests
+        //  but the book suggests you'd need to split this into two applications. Kinda annoying, so I'm
+        //  leaving the API broken for now
+        // http.authorizeHttpRequests().and().csrf().disable();
+
         return http.build();
     }
 }
