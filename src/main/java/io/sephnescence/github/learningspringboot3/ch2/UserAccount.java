@@ -16,7 +16,6 @@ public class UserAccount {
     @GeneratedValue
     public Long id;
 
-    // This wasn't in the book, but it is in github, and the IDE complains if it's missing
     protected UserAccount() {}
 
     public Long getId() {
@@ -71,7 +70,6 @@ public class UserAccount {
                 .build();
     }
 
-    // I had to get this code from GitHub because it wasn't in the book
     UserAccount(String username, String password, String... authorities) {
         this.id = null;
         this.setUsername(username);
