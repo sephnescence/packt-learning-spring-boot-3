@@ -126,4 +126,14 @@ I'm following through Learning Spring Boot 3.0 Third Edition
 - See `VideoRepository` for reference
   - Jakarta Persistence Query Language (JPQL)
   - Custom Finder (Things like findBy...)
-  - 
+
+I didn't end up finishing the chapter because it seemed a bit irrelevant. Talking with people who work at Atlassian, they don't use Spring Data like this so there's no point digging too deep
+- This does mean that I missed out on looking at Examples, but I'm not sure if that was a problem
+
+### Chapter 4 ###
+- https://github.com/PacktPublishing/Learning-Spring-Boot-3.0-Third-Edition/tree/main/ch4
+- Spring Security
+- Spring MVC vs Spring WebFlux? BTTODO
+- https://springbootlearning.com/password-storage. This can be slow to load. It redirects to https://docs.spring.io/spring-security/reference/features/authentication/password-storage.html#authentication-password-storage so maybe just go there directly
+- Introduces another way to start the app
+  - ./mvnw spring-boot:run
