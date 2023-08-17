@@ -34,13 +34,13 @@ public class SecurityConfig {
         System.out.println("Using configureSecurity to create SecurityFilterChain...");
         // This is deprecated though... :/
         http.authorizeHttpRequests()
-//                .requestMatchers("/login").permitAll()
-//                .requestMatchers("/multi-field-search").authenticated()
+                .requestMatchers(HttpMethod.POST, "/multi-field-search").authenticated()
+                .requestMatchers(HttpMethod.GET, "/multi-field-search").authenticated()
                 .requestMatchers(HttpMethod.GET, "/", "/react", "index.js").authenticated()
-//                .requestMatchers(HttpMethod.POST, "/new-video-entity").hasRole("ADMIN")
-//                .requestMatchers(HttpMethod.POST, "/new-video-entity").authenticated()
-//                .requestMatchers(HttpMethod.GET, "/api/**").authenticated()
-//                .requestMatchers(HttpMethod.POST, "/api/**").authenticated() // I think we'd want to lock down some api requests though
+                .requestMatchers(HttpMethod.POST, "/new-video-entity").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.GET, "/new-video-entity").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.GET, "/api/**").authenticated() // Unsure how to authenticate though
+                .requestMatchers(HttpMethod.POST, "/api/**").hasRole("ADMIN") // Unsure how to authenticate though
                 .anyRequest().denyAll()
                 .and()
                 .formLogin()

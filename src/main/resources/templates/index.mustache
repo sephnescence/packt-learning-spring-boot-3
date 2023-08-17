@@ -9,6 +9,7 @@
         Video Entity Description
         <input name="description" type="text" placeholder="Enter a video entity description" />
     </label>
+    <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}">
     <button type="submit">Add Video Entity</button>
 </form>
 
@@ -39,5 +40,6 @@
         <input name="description" type="text" placeholder="Video Entity Description" />
     </label>
 
+    <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}">
     <button type="submit">Search Video Entities</button>
 </form>
