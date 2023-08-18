@@ -1,6 +1,8 @@
 package io.sephnescence.github.learningspringboot3.ch2;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.lang.NonNull;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.util.List;
 
@@ -78,4 +80,13 @@ public interface VideoEntityRepository extends JpaRepository<VideoEntity, Long> 
     // However, if Person has a field called addressZipCode as well, it would use the field before joining
     //  Since the method name would still be (on Person class) findByAddressZipCode, you can tell Spring Data
     //  to favour the join instead by naming the method (on Person class) findByAddress_ZipCode
+
+    /*
+    Add security controls to the delete method
+
+    The name of the VideoEntity parameter must match #entity so that it can be de-referenced
+     */
+    @PreAuthorize("#entity.username == authentication.name OR hasRole('ROLE_ADMIN')")
+    @Override
+    void delete(@NonNull VideoEntity entity); // The IDE complains if I'm missing @NonNull
 }

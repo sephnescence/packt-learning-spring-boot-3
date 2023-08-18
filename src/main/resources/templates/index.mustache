@@ -1,5 +1,16 @@
 <h1>Learning Spring Boot 3</h1>
 
+<h2>User Profile</h2>
+<ul>
+    <li>Username: {{authentication.name}}</li>
+    <li>Authorities: {{authentication.authorities}}</li>
+</ul>
+
+<form action="/logout" method="post">
+    <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}">
+    <button type="submit">Log out</button>
+</form>
+
 <form action="/new-video-entity" method="post">
     <label for="name">
         Video Entity Name
@@ -17,11 +28,13 @@
     <tr>
         <th>Name</th>
         <th>Description</th>
+        <th>Username</th>
     </tr>
     {{#videoEntities}}
         <tr>
             <td>{{name}}</td>
             <td>{{description}}</td>
+            <td>{{username}}</td>
             <td>
                 <form action="/delete-video-entity/{{id}}" method="post">
                     <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}" />

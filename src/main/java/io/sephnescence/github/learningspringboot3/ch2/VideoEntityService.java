@@ -1,5 +1,6 @@
 package io.sephnescence.github.learningspringboot3.ch2;
 
+import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -12,11 +13,6 @@ public class VideoEntityService {
 
     public VideoEntityService(VideoEntityRepository videoEntityRepository) {
         this.videoEntityRepository = videoEntityRepository;
-
-        // This can apparently be moved to a "post construct". Assuming that happens later in the chapter
-        this.videoEntityRepository.save(new VideoEntity("admin", "Hideo 1", "Kojimaaa"));
-        this.videoEntityRepository.save(new VideoEntity("admin", "Hideo 2", "Kojimaaa"));
-        this.videoEntityRepository.save(new VideoEntity("admin", "Hideo 3", "Kojimaaa"));
     }
     public List<VideoEntity> getVideoEntities() {
         return this.videoEntityRepository.findAll();
@@ -72,5 +68,12 @@ public class VideoEntityService {
                     return true;
                 })
                 .orElseThrow(() -> new RuntimeException("No video at " + videoId));
+    }
+
+    @PostConstruct
+    void initDatabase() {
+        this.videoEntityRepository.save(new VideoEntity("alice", "Hideo 1", "Kojimaaa"));
+        this.videoEntityRepository.save(new VideoEntity("alice", "Hideo 2", "Kojimaaa"));
+        this.videoEntityRepository.save(new VideoEntity("bob", "Hideo 3", "Kojimaaa"));
     }
 }

@@ -148,3 +148,6 @@ I didn't end up finishing the chapter because it seemed a bit irrelevant. Talkin
         - Apparently allows authentication via CLI
       - The book refers to these as "standard authentication mechanisms" though
   - We can define our own Bean in `SecurityConfig`. Check that class in this commit for reference
+- We added a button to delete videos, but we didn't originally lock it down in the previous commit. In this commit, we will be locking it down to the owner of it. I'm not sure if the admin user will be able to delete everything but it will be interesting to see
+  - To begin with, the book confirms that your repositories don't _need_ to define the basic methods you're using (like delete), but if you want to use **security controls** you must define it. See `VideoRepository`
+- The book notes that Thymeleaf is better to use for templates because it has Spring Security extensions, but doesn't offer any more information on how to do that

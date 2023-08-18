@@ -18,8 +18,9 @@ public class HomeController {
     }
 
     @GetMapping("/") // Annotation for Get Request
-    public String index(Model model) {
+    public String index(Model model, Authentication authentication) {
         model.addAttribute("videoEntities", this.videoEntityService.getVideoEntities());
+        model.addAttribute("authentication", authentication);
 
         return "index";
     }
@@ -55,11 +56,13 @@ public class HomeController {
     @PostMapping("/multi-field-search")
     public String multiFieldSearchPost(
         @ModelAttribute VideoSearch search,
-        Model model
+        Model model,
+        Authentication authentication
     ) {
         List<VideoEntity> searchResults = videoEntityService.search(search);
 
         model.addAttribute("videoEntities", searchResults);
+        model.addAttribute("authentication", authentication);
 
         return "index";
     }

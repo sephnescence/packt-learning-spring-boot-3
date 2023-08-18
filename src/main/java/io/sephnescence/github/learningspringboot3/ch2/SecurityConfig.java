@@ -4,11 +4,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
+@EnableMethodSecurity // Might also see @EnableGlobalAuthentication in other codebases, which has been deprecated now. If I see it, the other security annotations will be different
 public class SecurityConfig {
     /*
     A note on Lambdas since this is my first time using them
