@@ -151,3 +151,21 @@ I didn't end up finishing the chapter because it seemed a bit irrelevant. Talkin
 - We added a button to delete videos, but we didn't originally lock it down in the previous commit. In this commit, we will be locking it down to the owner of it. I'm not sure if the admin user will be able to delete everything but it will be interesting to see
   - To begin with, the book confirms that your repositories don't _need_ to define the basic methods you're using (like delete), but if you want to use **security controls** you must define it. See `VideoRepository`
 - The book notes that Thymeleaf is better to use for templates because it has Spring Security extensions, but doesn't offer any more information on how to do that
+- Part of chapter 4 was done in the https://github.com/sephnescence/packt-learning-spring-boot-3-oauth repo instead
+
+## Chapter 5 ##
+
+### Testing ###
+- https://github.com/PacktPublishing/Learning-Spring-Boot-3.0-Third-Edition/blob/main/ch5/
+- Generally, all Spring Initialzr projects will have the `spring-boot-starter-test` starter included by default. This comes with the following out of the box
+  - Spring Boot Test
+  - JSONPath
+  - AssertJ
+  - Hamcrest - A library of "matchers"
+  - JUnit 5
+  - Mockito
+  - JSONAssert
+  - Spring Test
+  - XMLUnit
+- We're only interested in JUnit 5 and AssertJ for the moment. See CoreDomainTest for reference, but at this point I'm very familiar with basic JUnit usage. The only thing that keeps tripping me up is the import line that brings in the assertions
+- Something I didn't know about yet - Test Coverage. I can get a report with `Run | Run <File> with Coverage`
